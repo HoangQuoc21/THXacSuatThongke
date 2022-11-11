@@ -33,3 +33,19 @@ sort(x)
 save(x,file = 'varx.rda')
 save(y,file = 'vary.rda')
 sort(y, decreasing = T)
+
+#Bai02:
+#Doc du lieu tu file "data01.csv" vao R va gan vao vien data1
+setwd("C:/Users/quoc/Desktop/LỚP HỌC/XÁC SUẤT THỐNG KÊ/THỰC HÀNH/Data cho cac bai thuc hanh")
+data1 = read.csv("data01,csv",header = T)
+attach(data1);  names(data1)
+data1
+
+#a. Tinh trung binh, phuong sai, trung vi cua cac bien FPSA va TPSA
+#Trung binh
+mean(FPSA); mean(TPSA)
+#Phuong sai
+var(FPSA); var(TPSA)
+#Trung vi:
+median(FPSA); median(TPSA)
+
