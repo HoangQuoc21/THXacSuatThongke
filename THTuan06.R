@@ -49,3 +49,14 @@ var(FPSA); var(TPSA)
 #Trung vi:
 median(FPSA); median(TPSA)
 
+#Bai03:
+sv = 1:10
+ques1 = c(3,3,3,4,3,4,3,4,3,4) 
+ques2 = c(5,3,5,5,2,2,5,5,4,2)
+ques3 = c(1,3,1,1,1,3,1,1,1,1)
+
+#a) Tao bang diem
+diem = data.frame(sv,ques1,ques2, ques3)
+
+
+
