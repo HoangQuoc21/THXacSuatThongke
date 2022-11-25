@@ -28,10 +28,10 @@
 #VD1: Doan chuong trinh sau mo phong 50 khoang tin cay cho ty le xuat hien
 #mat sap khi tung mot dong xu can doi
 
-# Tung 30 d?ng xu c‚n d?i 50 l?n
+# Tung 30 d?ng xu c√¢n d?i 50 l?n
 m = 50; n=30; p = .5; alpha = 0.05 
 
-# TÌnh t? l? m?u
+# T√≠nh t? l? m?u
 p.hat = rbinom(m,n,p)/n 
 
 # Dung sai
