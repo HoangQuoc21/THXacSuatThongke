@@ -26,3 +26,29 @@ ci.mean = function(x,alpha){
   cat('KTC', 100*(1-alpha), '% cho ky vong mu la:\n')
   cat('[', xbar - epsilon, ';', x.bar + epsilon, ']\n')
 }
+
+#Bai03:
+#Nhap du lieu tu file data32.csv vao
+dat32 = read.csv("data32.csv", header = T)
+attach(dat32); names(dat32)
+
+#a) Uoc luong khoang cho thoi gian tu hoc trung binh cua sv truong KHTN
+ci.mean(KHTN, 0.05)
+
+#b) Viet ham ci.prop
+ci.prop = functionc(f,n,alpha){
+  p.hat = f/n #Ty le mau
+  ep = qnorm(1-alpha/2)*sqrt(p.hat*(1-p.hat)/2) #epsilon
+  cat('KTC', 100*(1-alpha), '% cho ty le p la:\n')
+  cat('[', p.hat - ep , ';', p.hat + ep, ']\n')
+ }
+
+#Tinh f,n
+n = length(KHTN)
+f = length(KHTN[KHTN > 5])
+#ap dung tinh ty le mau
+ci.prop(f,n,0.1)
+ci.prop(f,n,0.05)
+ci.prop(f,n,0.01)
+
+#Bai04:
