@@ -52,3 +52,38 @@ ci.prop(f,n,0.05)
 ci.prop(f,n,0.01)
 
 #Bai04:
+#a) Dua du lieu bang ve dang vector
+a = seq(1.2,2.0, by = 0.2)
+b = seq(1.4,2.2, by = 0.2)
+m = (a+b)/2
+N = c(6,34,31,42,12)
+x = rep(m,N);x
+#ap dung ci.mean de tim KTC 95% cho chieu cao trung binh cua thanh nien o trong khu vuc
+ci.mean(x,0.05)
+#b)
+f = length(x[x>=1.7])
+n = length(x)
+ci.prop(f,n,0.05)
+
+#Bai05:
+ktc.tb = function(x.bar, s = -1, sigma = -1, n, alpha){
+  if (sigma >= 0){
+    cd = qnorm(alpha/2, x.bar,sigma/sqrt(n))
+    ct = qnorm(1-alpha/2, x.bar, sigma/sqrt(n))
+  }
+  else{
+    eps = s/sqrt(n)*qt(1-alpha/2,n-1)
+    cd = x.bar-eps
+    ct = x.bar+eps
+  }
+  cat('Khoang tin cay', 100*(1-alpha), '% cho ky vong mu la:\n')
+  round(c(lower = cd, upper = ct),2)
+}
+
+#Kiem tra:
+n = 35
+x = rnorm(n,10,5)
+alpha = 0.05
+x.bar = mean(x)
+s = sd(x)
+ktc.tb(x.bar, s, n = n, alpha = alpha)
