@@ -46,3 +46,71 @@ t.test(x,y,alternative = "two.sided", var.equal = F, conf.level = 0.95)
 
 #b) p-value kiem dinh duoc la 0.1425
 #c)
+
+#Bai04:
+#a):
+setwd('D:/Github/THXacSuatThongke/Data cho cac bai thuc hanh')
+cholesterol = read.table('cholesterol.txt', header = T); cholesterol
+attach(cholesterol)
+#Kiem dinh phuong sai:
+var.test(Before, After)
+#lay ket qua tu Kiem dinh phuong sai
+alpha = 0.05
+v.equal = ifelse(var.test(Before, After)$p.value < alpha, F, T); v.equal
+
+#Kiem dinh bang t.test
+t.test(Before, After, alternative = 'greater', var.equal = v.equal, conf.level =  0.95)
+
+# p.value < alpha => BAc bo H0
+
+#b): Viet ham test.leq.oneside:
+test.leq.oneside = function(x,y,mu0,alpha){
+  D = x - y
+  n = length(x)
+  D.bar = mean(D)
+  D.sd = sd(D)
+  t0 = (D.bar - mu0)*sqrt(n)/D.sd
+  p.value = pt(t0,n-1)
+  cat('Voi muc y nghia', 100*alpha, '%\n')
+  if (p.value < alpha)
+    cat('Bac bo H0 voi p-value = ', p.value, '\n')
+  else
+    cat('Chua du co so bac bo H0 voi p-value = ', p.value, '\n')
+}
+
+x = Before; y = After
+#Ap dung mu0 = 0
+test.leq.oneside(x,y,mu0 = 0, alpha = 0.05)
+
+#Kiem tra lai ban t.tets
+t.test(x,y,alternative = 'less', var.equal = v.equal, conf.level = 0.95, paired = T)
+
+#c): Viet ham test.geq.oneside:
+test.leq.oneside = function(x,y,mu0,alpha){
+  D = x - y
+  n = length(x)
+  D.bar = mean(D)
+  D.sd = sd(D)
+  t0 = (D.bar - mu0)*sqrt(n)/D.sd
+  p.value = 1 - pt(t0,n-1)
+  cat('Voi muc y nghia', 100*alpha, '%\n')
+  if (p.value < alpha)
+    cat('Bac bo H0 voi p-value = ', p.value, '\n')
+  else
+    cat('Chua du co so bac bo H0 voi p-value = ', p.value, '\n')
+}
+
+x = Before; y = After
+#Ap dung mu0 = 0
+test.geq.oneside(x,y,mu0 = 0, alpha = 0.05)
+
+#Kiem tra lai ban t.tets
+t.test(x,y,alternative = 'greater', var.equal = v.equal, conf.level = 0.95, paired = T)
+
+#Bai07:
+y = c(15,8)
+n = c(300,300)
+prop.test(y,n,alternative = 'two.sided', conf.level = 0.975)
+
+
+
