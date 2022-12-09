@@ -45,7 +45,33 @@ t.test(x,y,alternative = "two.sided", var.equal = F, conf.level = 0.95)
 #=> Bac bo H0, Nhan dinh cua ky su sai
 
 #b) p-value kiem dinh duoc la 0.1425
-#c)
+#c
+#khoang tin cay doc o ket qua cau a
+
+#d
+test.leq.oneside=function(x,y,mu0,sigma1,sigma2,alpha){
+  temp=TRUE
+  if(sigma1 != sigma2) temp=FALSE
+  result=t.test(x=x,y=y,mu=mu0,alternative="less",conf.level=1-alpha,paired=FALSE,var.equal=temp)
+  print("p.value = ")
+  print(result$p.value)
+  if(result$p.value < alpha) print("Bac bo H0")
+  else print("Chap nhan H0")
+}
+test.leq.oneside(machine1,machine2,0,0.002,0.0025,0.05)
+
+#e
+test.geq.oneside=function(x,y,mu0,sigma1,sigma2,alpha){
+  temp=TRUE
+  if(sigma1 != sigma2) temp=FALSE
+  result=t.test(x=x,y=y,mu=mu0,alternative="greater",conf.level=1-alpha,paired=FALSE,var.equal=temp)
+  print("p.value = ")
+  print(result$p.value)
+  if(result$p.value < alpha) print("Bac bo H0")
+  else print("Chap nhan H0")
+}
+test.geq.oneside(machine1,machine2,0,0.002,0.0025,0.05)
+
 
 #Bai04:
 #a):
